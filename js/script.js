@@ -13,7 +13,7 @@ var context = canvas.getContext('2d');
 
 video.addEventListener('play', function() {
   context.drawImage(this, 0, 0, canvas.width, canvas.height);
-  context.scale(-1,1)
+  // context.scale(-1,1)
   draw(video,canvas,context,60)
 }, false);
 
