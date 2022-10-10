@@ -1,0 +1,247 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display");
+
+body {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  font-family: "Red Hat Display";
+  /* font-variant: small-caps; */
+}
+
+video {
+  display: none;
+   transform: scaleX(-1) scaleY(-1);
+}
+
+table {
+  margin: auto;
+}
+
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+:root {
+  --primary-bg-color: hsl(249, 94%, 69%);
+  --bg-darker-5: hsl(249, 61%, 57%);
+  --bg-darker-10: hsl(249, 47%, 48%);
+  --bg-darker-12: hsl(249, 45%, 39%);
+  --bg-darker-15: hsl(250, 42%, 26%);
+  --bg-lighter: hsl(249, 68%, 81%);
+  --primary-dark: #262344;
+  --primary-grey: #f4f5f8;
+  --secondary-orange: #fe9c7e;
+  --secondary-red: #f16d54;
+  --secondary-yellow: #fbde3a;
+  --secondary-blue: #5043d1;
+  --secondary-lightblue: #8bb7fc;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.item {
+  border-radius: 25px;
+  background: var(--bg-lighter);
+  margin: 5px;
+  box-shadow: 0 0 30px 0px #d1d1d1;
+}
+
+.item h4 {
+  /* padding:5px; */
+  margin: 15px;
+}
+
+.sub-item {
+  border-radius: 0px 0px 25px 25px;
+  color: white;
+  background: var(--primary-dark);
+  padding: 30px;
+  margin: 0px;
+  font-size: 40px;
+}
+/* 
+button {
+  width: 50px;
+  padding: 5px 10px 5px 10px;
+  margin: 10px;
+  border-radius: 50px;
+  font-size: 10pt !important;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  background: var(--primary-bg-color) !important;
+  border: 2px solid transparent;
+  box-shadow: 0px 2px 4px var(--bg-lighter);
+  line-height: initial !important;
+  min-width: 82px;
+  text-transform: none;
+  height: initial;
+  font-weight: 600;
+  letter-spacing: initial;
+  text-shadow: none;
+  transition: all 0.2s;
+  font-family: inherit;
+} */
+
+#container {
+  width: 80%;
+  margin: auto;
+}
+
+select,
+input {
+  appearance: auto;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 20%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  color: #262344;
+  text-align: center;
+}
+
+#selectSection,
+#inputSection,
+option {
+  background: #fe9c7e;
+}
+
+option {
+  font-size: 10px;
+  padding: 20px;
+  width: 80%;
+}
+
+option:active {
+  background: #7e68fa;
+}
+
+.gradient {
+  /* font-size: 72px; */
+  background: -webkit-linear-gradient(
+    #7e68fa,
+    #7e68fa,
+    #f16d54,
+    #f16d54,
+    #fbde3a
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.swal-title {
+  margin: 0px;
+  font-size: 90px;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.21);
+  margin-bottom: 28px;
+}
+
+.swal-text {
+  font-size: 60px;
+  padding: 10px;
+}
+
+.swal-text {
+  padding: 17px;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  color: #61534e;
+}
+
+.swal-footer {
+  background-color: rgb(245, 248, 250);
+  margin-top: 32px;
+  border-top: 1px solid #e9eef1;
+  overflow: hidden;
+}
+
+.swal-overlay {
+  background-color: #fbde3a;
+}
+
+canvas {
+  position: relative;
+  margin-left: 100px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+#canvasBox {
+  position: relative;
+  margin: auto;
+}
+
+#map{
+  position:absolute;
+  top:50px;
+  right:100px;
+  width:250px;
+  z-index:5;
+  border-radius:10px;
+  border:2px solid black;
+  opacity:1;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  margin-bottom:10px;
+}
+
+/* Style the close button */
+.topright {
+  float: right;
+  cursor: pointer;
+  font-size: 28px;
+}
+
+.topright:hover {color: red;}

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/x-icon" href="https://cdn.glitch.global/5fbfde84-4f5e-46c9-b02b-7de045bf80b7/favicon.ico?v=1664757688575">
+
+    <title>IC@Y Cell Counter</title>
+
+    <!-- Import the webpage's stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Import the webpage's javascript file -->\
+    <script src="js/tabs.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/script.js" defer></script>
+    <script src="js/simpleblob.js" defer></script>
+    <script src="js/imagefilters.js" defer></script>
+    <script src="js/keyBoardControls.js" defer></script>
+    <script src="js/simpleStatistics.js" defer></script>
+
+    <script src="js/countTotal.js" defer></script>
+    <script src="js/countLive.js" defer></script>
+    <script src="js/countDead.js" defer></script>
+
+    <script src="js/openCvPredictions.js" defer></script>
+
+    <script>
+
+    </script>
+    
+  </head>
+  <body>
+    <h2>IC@Y Cell Counter</h2>
+  
+    <video autoplay></video>
+     
+     <script>
+     var slider = document.getElementById("boxLength");
+     var output = document.getElementById("demo");
+     output.innerHTML = slider.value;
+ 
+     slider.oninput = function() {
+       output.innerHTML = this.value;
+     }
+     </script>
+
+    <!-- <button onclick="estimateCounts()">
+      Capture
+    </button> -->
+
+    <div class="tab">
+      <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Manual')">Manual (M)</button>
+      <button class="tablinks" onclick="openTab(event, 'Automatic')">Automatic (A)</button>
+      <button class="tablinks" onclick="resetCounts()">Reset (R)</button>
+    </div>
+    
+    <div id="Manual" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <h3>Manual Counter</h3>
+      <p>To take manual counts, press the appropriate keys for the specific cell type:</p>
+      <p>J (Live), K (Budding), L (Dead)</p>
+
+      <table>
+        <tr>
+          <th>Boxes counted</th>
+          <th>Live Cells (J)</th>
+          <th>Budding Cells (K)</th>
+          <th>Dead Cells (L)</th>
+          <th>Total Cells</th>
+          <th>Viability</th>
+        </tr>
+        <tr>
+          <td id="boxesManual">0</td>
+          <td id="liveManual">0</td>
+          <td id="buddingManual">0</td>
+          <td id="deadManual">0</td>
+          <td id="totalManual">0</td>
+          <td id="viabilityManual">0</td>
+        </tr>
+      </table>
+
+    </div>
+    
+    <div id="Automatic" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <h3>Automatic Counter</h3>
+      <div class="slidecontainer">
+        <input id="boxLength" type="range" min="100" max="768" value="610">
+           <b>    Box Length: <span id="demo"></span></b>
+       </div>
+      <p>Adjust the box size using the slider above to resize your region of interest</p>
+      <p>To automatically detect and predict the cell count of the video feed, press space.</p> 
+
+       
+      <table>
+        <tr>
+          <th>Boxes counted</th>
+          <th>Total Cells</th>
+          <th>Live Cells</th>
+          <th>Budding Cells</th>
+          <th>Dead Cells</th>
+          <th>Viability</th>
+        </tr>
+        <tr>
+          <td id="boxesAuto">0</td>
+          <td id="totalAuto">0</td>
+          <td id="liveAuto">0</td>
+          <td id="buddingAuto">0</td>
+          <td id="deadAuto">0</td>
+          <td id="viabilityAuto">0</td>
+        </tr>
+      </table>
+    </div>
+    
+    <div id="canvasBox">
+    
+      <img src="https://cdn.glitch.global/5fbfde84-4f5e-46c9-b02b-7de045bf80b7/1.png" id="map"> 
+       <p>
+       <canvas id="canvasInput"></canvas>
+         </p>
+      <p>
+            <canvas id="canvasOutput"></canvas>
+      </p>
+    </div>
+
+    <!-- <canvas id="canvasInput"></canvas>
+    <canvas id="canvasOutput"></canvas> -->
+    
+    <script src ="js/opencv/opencv.js"></script>
+    <!-- <script async src="https://docs.opencv.org/3.4.0/opencv.js" type="text/javascript"></script> -->
+  </body>
+</html>
