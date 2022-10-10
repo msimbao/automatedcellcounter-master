@@ -41,7 +41,8 @@ function myStandardDeviation (array) {
 
 
 function draw(video, canvas, context, frameRate) {
-    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+  context.scale(-1, -1);
+    context.drawImage(video, 0, 0, canvas.width *-1, canvas.height*-1);
   
     var boxLength = document.getElementById("boxLength").value;
     var xPos = canvas.width/2 - boxLength/2
