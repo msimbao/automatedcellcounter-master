@@ -69,8 +69,8 @@ ul {
   margin: 0px;
   font-size: 40px;
 }
-/* 
-button {
+
+.countButton {
   width: 50px;
   padding: 5px 10px 5px 10px;
   margin: 10px;
@@ -93,7 +93,7 @@ button {
   text-shadow: none;
   transition: all 0.2s;
   font-family: inherit;
-} */
+}
 
 #container {
   width: 80%;

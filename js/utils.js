@@ -53,6 +53,8 @@ function draw(video, canvas, context, frameRate) {
     context.beginPath();
     context.rect(xPos, yPos, boxLength, boxLength);
     context.stroke();
+    
+
   
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     // var filtered = ImageFilters.Sharpen (imageData, factor)

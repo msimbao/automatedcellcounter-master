@@ -43,9 +43,7 @@
      }
      </script>
 
-    <!-- <button onclick="estimateCounts()">
-      Capture
-    </button> -->
+
 
     <div class="tab">
       <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Manual')">Manual (M)</button>
@@ -90,6 +88,9 @@
       <p>Adjust the box size using the slider above to resize your region of interest</p>
       <p>To automatically detect and predict the cell count of the video feed, press space.</p> 
 
+      <button class="countButton" onclick="estimateCounts()">
+        Count Automatically
+      </button>
        
       <table>
         <tr>
