@@ -36,6 +36,10 @@ document.addEventListener('keyup', (event) => {
       deadText.innerText = 0
     }
 
+    if (name === 'Enter' ){
+      estimateCounts()
+    }
+
     var total = parseInt(live) + parseInt(dead)
     totalText.innerText = total
 
