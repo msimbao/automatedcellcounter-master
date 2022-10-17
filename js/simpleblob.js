@@ -1,4 +1,4 @@
-// Port of https://github.com/opencv/opencv/blob/a50a355/modules/features2d/src/blobdetector.cpp
+ // Port of https://github.com/opencv/opencv/blob/a50a355/modules/features2d/src/blobdetector.cpp
 // But with special `faster` option which has slightly different semantics,
 // but is a whole bunch faster.
 

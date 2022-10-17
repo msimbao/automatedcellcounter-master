@@ -1,4 +1,4 @@
-function countTotal(live,dead,total){
+function countTotal(live,budding,dead,total){
       
 let src = cv.imread('canvasInput');
 // let clone = src.clone();
@@ -27,6 +27,7 @@ let convexities = []
 let circularities = []
 
 let live_dots=[]
+let budding_dots=[]
 let dead_dots=[]
 let total_dots=[]
 
@@ -63,7 +64,7 @@ cv.Canny(dst, dst, 0, 250, 3, true);
   let contours = new cv.MatVector();
   let hierarchy = new cv.Mat();
   // You can try more different parameters
-  cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+  cv.findContours(dst, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_NONE);
 //First Segmentation Via Contours from Canny Edge
 for (let i = 0; i < contours.size(); ++i) {
     let color = new cv.Scalar(Math.round(Math.random() * 255), Math.round(Math.random() * 255),
@@ -82,7 +83,7 @@ cv.erode(dst, dst, M, anchor, 2, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderV
 //Second Contour Detection
   let second_contours = new cv.MatVector();
   let second_hierarchy = new cv.Mat();
-  cv.findContours(dst, second_contours, second_hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+  cv.findContours(dst, second_contours, second_hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_NONE);
   
 //First Segmentation Via Contours from Canny Edge
 for (let i = 0; i < second_contours.size(); ++i) {
@@ -104,14 +105,19 @@ for (let i = 0; i < second_contours.size(); ++i) {
     // console.log(poly.rows)
   
     //Variables for Determining Ovular Shape
-    const circularity = 4 * 3.14159265359 * area / (perimeter * perimeter);
+    let circularity = 4 * 3.14159265359 * area / (perimeter * perimeter);
+    let inertia = myInertia(cnt)
+    let convexity = myConvexity(cnt)
   
     areas.push(area)
     polys.push(poly.rows)
     centers.push(cntColor)
     perimeters.push(perimeter)
-
     circularities.push(circularity)
+
+    inertias.push(inertia)
+    convexities.push(convexity)
+    
 }
 
 //Get Median Area and Standard Deviation of Area
@@ -123,7 +129,7 @@ medianPoly = myMedian(polys)
 stDevPoly = myStandardDeviation(polys)  
 
 //Seperate Contour Colours From Centers into Clusters. The first cluster has regions with highest blue color
-clusters = ss.ckmeans(centers, 2)
+colorClusters = ss.ckmeans(centers, 2)
 
 //Get Median Perimeter and Standard Deviation of Perimeter
 medianPerimeter = myMedian(perimeters)
@@ -132,6 +138,17 @@ stDevPerimeter = myStandardDeviation(perimeters)
 //Get Median Circularity and Standard Deviation of Circularity
 medianCircularity = myMedian(circularities)
 stDevCircularity = myStandardDeviation(circularities)  
+
+//Seperate Contour Circularities into Clusters. The first cluster has regions that look like budding cells
+circularityClusters = ss.ckmeans(circularities, 2)
+
+//Get Median Inertia and Standard Deviation of Inertia
+medianInertia = myMedian(inertias)
+stDevInertia = myStandardDeviation(inertias)  
+
+//Get Median Convexity and Standard Deviation of Convexity
+medianConvexity = myMedian(convexities)
+stDevConvexity = myStandardDeviation(convexities)  
 
 for (let i = 0; i < second_contours.size(); ++i) {
     let cnt = second_contours.get(i)
@@ -152,34 +169,53 @@ for (let i = 0; i < second_contours.size(); ++i) {
     polyError = Math.abs(medianPoly - poly.rows)
     // (poly.rows > 8)
 
-
-
     //Get Contour Circularity and Deviation from Median
     circularity = 4 * 3.14159265359 * area / (perimeter * perimeter);
     circularityError = Math.abs(medianCircularity - circularity)
-    // console.log(circularityError)
-    // console.log(stDevCircularity)
-    //(circularity > minCircularity || circularity <= maxCircularity)
 
+    inertia = myInertia(cnt)
+    inertiaError = Math.abs(medianInertia - inertia)
+
+    
+    convexity = myConvexity(cnt)
+    convexityError = Math.abs(medianConvexity - convexity)
+ 
     //Get Contour Center
     M = cv.moments(cnt, false);
     let cx = M.m10/M.m00
     let cy = M.m01/M.m00
-    
+     
     let cntColor = toBlur.ucharPtr(cy, cx)[0]
   
+    if(
+      (circularity > 0.5) && 
+      (circularityError *24 >= stDevCircularity) && 
 
-  
-    if((area > 0) && (areaError *3 >= stDevArea) && (perimeterError *3 >= stDevPerimeter) && (polyError *3 >= stDevPoly) ){
+      // (inertia > 0.3) && 
+      // (inertiaError *24 >= stDevInertia) && 
+
+      (convexity > 0.3) && 
+      // (convexityError  >= stDevConvexity) && 
+
+      (area > 0) && 
+      (areaError *24 >= stDevArea) && 
+      
+      // (polyError *3 >= stDevPoly)
+      (poly.rows > 8)
+       ){
 
       total_dots.push(area)
 
-      if(clusters[0].includes(cntColor)){
+      if(colorClusters[0].includes(cntColor)){
         color = new cv.Scalar(0,0,255);
         dead_dots.push(area)
       }else{
         color = new cv.Scalar(0,255,0);
         live_dots.push(area)
+        if(circularityClusters[0].includes(circularity)){
+          color = new cv.Scalar(20, 140, 108);
+          budding_dots.push(area)
+        }
       }
       
       cv.drawContours(end, second_contours, i, color, -1, cv.LINE_8, second_hierarchy, 100);
@@ -191,11 +227,12 @@ for (let i = 0; i < second_contours.size(); ++i) {
 }
 
 live = live + live_dots.length
+budding = budding + budding_dots.length
 dead = dead + dead_dots.length
 total = total + total_dots.length
   
 cv.imshow('canvasOutput', end);
 src.delete(); dst.delete(); second_contours.delete(); second_hierarchy.delete(); 
 
-return [live,dead,total]
+return [live,budding,dead,total]
 }

@@ -33,6 +33,10 @@
   
     <video autoplay></video>
      
+    <div class="slidecontainer">
+      <input id="boxLength" type="range" min="0" max="768" value="470">
+         <b>    Box Length: <span id="demo"></span></b>
+     </div>
      <script>
      var slider = document.getElementById("boxLength");
      var output = document.getElementById("demo");
@@ -76,18 +80,6 @@
         </tr>
       </table>
 
-    </div>
-    
-    <div id="Automatic" class="tabcontent">
-      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-      <h3>Automatic Counter</h3>
-      <div class="slidecontainer">
-        <input id="boxLength" type="range" min="100" max="768" value="610">
-           <b>    Box Length: <span id="demo"></span></b>
-       </div>
-      <p>Adjust the box size using the slider above to resize your region of interest</p>
-      <p>To automatically detect and predict the cell count of the video feed, press space.</p> 
-
       <button class="countButton" onclick="estimateCounts()">
         Count
       </button>
@@ -95,21 +87,45 @@
       <table>
         <tr>
           <th>Boxes counted</th>
-          <th>Total Cells</th>
           <th>Live Cells</th>
           <th>Budding Cells</th>
           <th>Dead Cells</th>
+          <th>Total Cells</th>
           <th>Viability</th>
         </tr>
         <tr>
           <td id="boxesAuto">0</td>
-          <td id="totalAuto">0</td>
           <td id="liveAuto">0</td>
           <td id="buddingAuto">0</td>
           <td id="deadAuto">0</td>
+          <td id="totalAuto">0</td>
           <td id="viabilityAuto">0</td>
         </tr>
       </table>
+
+      <table>
+        <tr>
+          <th>Total Accuracy</th>
+          <th>Viability Accuracy</th>
+          <th>Budding Accuracy</th>
+        </tr>
+        <tr>
+          <td id="totalAccuracy">0</td>
+          <td id="viabilityAccuracy">0</td>
+          <td id="buddingAccuracy">0</td>
+        </tr>
+      </table>
+
+    </div>
+    
+    <div id="Automatic" class="tabcontent">
+      <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+      <h3>Automatic Counter</h3>
+
+      <p>Adjust the box size using the slider above to resize your region of interest</p>
+      <p>To automatically detect and predict the cell count of the video feed, press space.</p> 
+
+
     </div>
     
     <div id="canvasBox">

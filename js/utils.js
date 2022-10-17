@@ -65,4 +65,48 @@ function draw(video, canvas, context, frameRate) {
     setTimeout(draw, 1/frameRate, video, canvas, context, frameRate);
   }
 
+
+  function myInertia(contour){
+
+    moms = cv.moments(contour);
+    center = {
+      confidence: 1,
+      location: { x: moms.m10 / moms.m00, y: moms.m01 / moms.m00 },
+    };
+
+    const denominator = Math.sqrt(
+      Math.pow(2 * moms.mu11, 2) + Math.pow(moms.mu20 - moms.mu02, 2)
+    );
+    let ratio;
+    if (denominator > 0.01) {
+      const cosmin = (moms.mu20 - moms.mu02) / denominator;
+      const sinmin = 2 * moms.mu11 / denominator;
+      const cosmax = -cosmin;
+      const sinmax = -sinmin;
+
+      const imin =
+        0.5 * (moms.mu20 + moms.mu02) -
+        0.5 * (moms.mu20 - moms.mu02) * cosmin -
+        moms.mu11 * sinmin;
+      const imax =
+        0.5 * (moms.mu20 + moms.mu02) -
+        0.5 * (moms.mu20 - moms.mu02) * cosmax -
+        moms.mu11 * sinmax;
+      ratio = imin / imax;
+    } else {
+      ratio = 1;
+    }
+
+    return ratio 
+  }
+
+  function myConvexity (contour) {
+    area = cv.contourArea(contour, false);
+    const hull = new cv.Mat();
+    cv.convexHull(contour, hull);
+    const hullArea = cv.contourArea(hull);
+    const ratio = area / hullArea;
+    hull.delete();
+    return ratio
+  }
   
