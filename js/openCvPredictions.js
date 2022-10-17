@@ -46,7 +46,7 @@ function estimateCounts(){
   liveManual = liveManualText.innerText
   buddingManual = buddingManualText.innerText
   deadManual = deadManualText.innerText
-  let totalManual = parseint(liveManual) + parseint(deadManual)
+  let totalManual = parseInt(liveManual) + parseInt(deadManual)
 
   let viabilityManual = (100 * (liveManual/totalManual)).toFixed(2)
 
@@ -60,9 +60,9 @@ function estimateCounts(){
   viability = (100 * (live/total)).toFixed(2)
   viabilityText.innerText = viability
 
-  totalAccuracy = (100 - 100*Math.abs(totalManual - total)/totalManual)
-  buddingAccuracy = (100 - 100*Math.abs(buddingManual - budding)/buddingManual)
-  viabilityAccuracy =  (100 - 100*Math.abs( viabilityManual- viability)/viabilityManual)
+  totalAccuracy = (100 - 100*Math.abs(totalManual - total)/totalManual).toFixed(2)
+  buddingAccuracy = (100 - 100*Math.abs(buddingManual - budding)/buddingManual).toFixed(2)
+  viabilityAccuracy =  (100 - 100*Math.abs( viabilityManual- viability)/viabilityManual).toFixed(2)
 
   totalAccuracyText.innerText = totalAccuracy
   buddingAccuracyText.innerText = buddingAccuracy

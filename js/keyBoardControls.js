@@ -15,6 +15,7 @@ document.addEventListener('keyup', (event) => {
     var live = liveText.innerText
     var budding = buddingText.innerText
     var dead =  deadText.innerText
+    var boxes = boxesText.innerText
     // alert(live)
     // Alert the key name and key code on keydown
     // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
@@ -38,6 +39,8 @@ document.addEventListener('keyup', (event) => {
 
     if (name === 'Enter' ){
       estimateCounts()
+      boxes++
+      boxesText.innerText = boxes
     }
 
     var total = parseInt(live) + parseInt(dead)
