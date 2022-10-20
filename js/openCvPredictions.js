@@ -15,10 +15,16 @@ var buddingAccuracy = 0
 var liveManual = 0
 var buddingManual = 0
 var deadManual = 0
+var totalManual = 0
+var boxesManual = 0
+var viabilityManual = 0
 
 var liveManualText = document.getElementById ( "liveManual" )
 var buddingManualText = document.getElementById ( "buddingManual" )
 var deadManualText = document.getElementById ( "deadManual" )
+var totalManualText = document.getElementById ( "totalManual" )
+var boxesManualText = document.getElementById ("boxesManual")
+var viabilityManualText = document.getElementById ( "viabilityManual" )
 //================================================================
 
 var liveText = document.getElementById ( "liveAuto" )
@@ -69,7 +75,24 @@ function estimateCounts(){
   viabilityAccuracyText.innerText = viabilityAccuracy
 }
 
-function resetCounts(){
+function resetManual(){
+  liveManual = 0
+  buddingManual = 0
+  deadManual = 0
+  totalManual = 0
+  boxesManual = 0
+  viabilityManual = 0
+
+  liveManualText.innerText = 0
+  buddingManualText.innerText = 0
+  deadManualText.innerText = 0
+  totalManualText.innerText = 0
+  boxesManualText.innerText = 0
+  viabilityManualText.innerText = 0
+
+}
+
+function resetAuto(){
   live = 0
   budding = 0
   dead = 0
@@ -81,14 +104,6 @@ function resetCounts(){
   viabilityAccuracy = 0
   buddingAccuracy = 0
 
-  liveManual = 0
-  buddingManual = 0
-  deadManual = 0
-
-  liveManualText = 0
-  buddingManualText = 0
-  deadManualText = 0
-
   viabilityText.innerText = 0
   boxesText.innerText = 0
   totalText.innerText = 0
@@ -96,8 +111,11 @@ function resetCounts(){
   buddingText.innerText = 0
   liveText.innerText = 0
 
-  totalAccuracyText = 0
-  viabilityAccuracyText = 0
-  buddingAccuracyText = 0
-
+  totalAccuracyText.innerText = 0
+  viabilityAccuracyText.innerText = 0
+  buddingAccuracyText.innerText = 0
+}
+function resetCounts(){
+  resetAuto()
+  resetManual()
 }

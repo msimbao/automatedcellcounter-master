@@ -8,20 +8,17 @@
     <!-- Import the webpage's stylesheet -->
     <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Import the webpage's javascript file -->\
+    <!-- Import the webpage's javascript file -->
     <script src="js/tabs.js" defer></script>
     <script src="js/utils.js" defer></script>
     <script src="js/script.js" defer></script>
-    <script src="js/simpleblob.js" defer></script>
     <script src="js/imagefilters.js" defer></script>
     <script src="js/keyBoardControls.js" defer></script>
     <script src="js/simpleStatistics.js" defer></script>
 
-    <script src="js/countTotal.js" defer></script>
-    <script src="js/countLive.js" defer></script>
-    <script src="js/countDead.js" defer></script>
-
+    <script src="js/count.js" defer></script>
     <script src="js/openCvPredictions.js" defer></script>
+    <script src="js/openCvBlobDataCollection.js" defer></script>
 
     <script>
 
@@ -50,16 +47,20 @@
 
 
     <div class="tab">
-      <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Manual')">Manual (M)</button>
-      <button class="tablinks" onclick="openTab(event, 'Automatic')">Automatic (A)</button>
-      <button class="tablinks" onclick="resetCounts()">Reset (R)</button>
+      <button class="tablinks" id="defaultOpen" onclick="openTab(event, 'Manual')">Count</button>
+      <button class="tablinks" onclick="openTab(event, 'Automatic')">Automatic Settings</button>
+      <button class="tablinks" onclick="resetCounts()">Reset</button>
     </div>
     
     <div id="Manual" class="tabcontent">
       <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-      <h3>Manual Counter</h3>
+      <h3>Manual & Automatic Counter</h3>
       <p>To take manual counts, press the appropriate keys for the specific cell type:</p>
-      <p>J (Live), K (Budding), L (Dead)</p>
+      <p>J (Live), K (Budding), L (Dead), R (Reset)</p>
+      <p>Once you complete the manual count, press enter to perform the automatic count</p>
+      <p>Record the Counts and accuracies in the microscope testing file for that day</p>
+      
+      <h5>Manual Counts</h5>
 
       <table>
         <tr>
@@ -77,12 +78,15 @@
           <td id="deadManual">0</td>
           <td id="totalManual">0</td>
           <td id="viabilityManual">0</td>
+          <td> <button class="countButton" onclick='resetManual()'>Reset</button> </td>
         </tr>
       </table>
 
-      <button class="countButton" onclick="estimateCounts()">
+      <!-- <button class="countButton" onclick="estimateCounts()">
         Count
-      </button>
+      </button> -->
+      <hr>
+      <h5>Automatic Counts</h5>
        
       <table>
         <tr>
@@ -100,6 +104,7 @@
           <td id="deadAuto">0</td>
           <td id="totalAuto">0</td>
           <td id="viabilityAuto">0</td>
+          <td> <button class="countButton" onclick='resetAuto()'>Reset</button> </td>
         </tr>
       </table>
 
@@ -116,15 +121,39 @@
         </tr>
       </table>
 
+
+
     </div>
     
     <div id="Automatic" class="tabcontent">
       <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
-      <h3>Automatic Counter</h3>
+      <h3>Automatic Counter Settings</h3>
 
       <p>Adjust the box size using the slider above to resize your region of interest</p>
-      <p>To automatically detect and predict the cell count of the video feed, press space.</p> 
+      <p>Prepare a clean yeast sample to run testing with. Then press B to generate parameters</p> 
 
+
+      <table>
+        <tr>
+          <th>Median Circularity</th>
+          <th>Stdev Circularity</th>
+          <th>Median Inertia</th>
+          <th>Stdev Inertia</th>
+          <th>Median Convexity</th>
+          <th>Stdev Convexity</th>
+        </tr>
+        <tr>
+          <td id="medianCircularity">0</td>
+          <td id="stdevCircularity">0</td>
+          <td id="medianInertia">0</td>
+          <td id="stdevInertia">0</td>
+          <td id="medianConvexity">0</td>
+          <td id="stdevConvexity">0</td>
+        </tr>
+      </table>
+
+      <h5>Yeast Blob Data Array:</h5>
+      <p id="blobData"></p>
 
     </div>
     
@@ -134,15 +163,20 @@
        <p>
        <canvas id="canvasInput"></canvas>
          </p>
-      <p>
-            <canvas id="canvasOutput"></canvas>
-      </p>
+
+         <p>
+          <canvas id="canvasOutput"></canvas>
+        </p>
+  
+
     </div>
 
     <!-- <canvas id="canvasInput"></canvas>
     <canvas id="canvasOutput"></canvas> -->
     
     <script src ="js/opencv/opencv.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <!-- <script async src="https://docs.opencv.org/3.4.0/opencv.js" type="text/javascript"></script> -->
   </body>
 </html>

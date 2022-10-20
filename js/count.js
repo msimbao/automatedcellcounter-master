@@ -31,8 +31,12 @@ let budding_dots=[]
 let dead_dots=[]
 let total_dots=[]
 
-let minCircularity = 0.78
-let maxCircularity = 1.0
+let scMedianCircularity = 0.859758598773816
+let scStdDevCircularity = 0.0473188976203336
+let scMedianInertia = 0.697466400870031
+let scStdDevInertia = 0.136547499641935
+let scMedianConvexity = 0.964147198616966
+let scstDevConvexity = 0.0280433776810446
 
 
 // cv.medianBlur(dst, dst, 1);
@@ -108,6 +112,9 @@ for (let i = 0; i < second_contours.size(); ++i) {
     let circularity = 4 * 3.14159265359 * area / (perimeter * perimeter);
     let inertia = myInertia(cnt)
     let convexity = myConvexity(cnt)
+
+    if(circularity==0) continue;
+    if(isNaN(convexity)) continue;
   
     areas.push(area)
     polys.push(poly.rows)
@@ -117,6 +124,9 @@ for (let i = 0; i < second_contours.size(); ++i) {
 
     inertias.push(inertia)
     convexities.push(convexity)
+
+    var coordinate = [circularity,inertia]
+    clusterCoordinates.push(coordinate)
     
 }
 
@@ -150,6 +160,8 @@ stDevInertia = myStandardDeviation(inertias)
 medianConvexity = myMedian(convexities)
 stDevConvexity = myStandardDeviation(convexities)  
 
+blobKmeans = KMeansCluster(clusterCoordinates,2)
+
 for (let i = 0; i < second_contours.size(); ++i) {
     let cnt = second_contours.get(i)
     let color = new cv.Scalar(0,0,0);
@@ -176,7 +188,6 @@ for (let i = 0; i < second_contours.size(); ++i) {
     inertia = myInertia(cnt)
     inertiaError = Math.abs(medianInertia - inertia)
 
-    
     convexity = myConvexity(cnt)
     convexityError = Math.abs(medianConvexity - convexity)
  
@@ -188,21 +199,19 @@ for (let i = 0; i < second_contours.size(); ++i) {
     let cntColor = toBlur.ucharPtr(cy, cx)[0]
   
     if(
-      (circularity > 0.5) && 
-      (circularityError *24 >= stDevCircularity) && 
+      // (circularity > 0.5) && 
+      // (circularityError *24 >= stDevCircularity) && 
+      // (convexity > 0.3) && 
+      // (area > 0) && 
+      // (areaError *24 >= stDevArea) && 
+      // (poly.rows > 8) 
 
-      // (inertia > 0.3) && 
-      // (inertiaError *24 >= stDevInertia) && 
-
-      (convexity > 0.3) && 
-      // (convexityError  >= stDevConvexity) && 
-
-      (area > 0) && 
-      (areaError *24 >= stDevArea) && 
-      
-      // (polyError *3 >= stDevPoly)
-      (poly.rows > 8)
-       ){
+      (circularityClusters[1].includes(circularity)) 
+       
+      //  (medianCircularity-scStdDevCircularity*2 <= circularity <= medianCircularity+scStdDevCircularity*2) &&
+      //  (medianInertia-scStdDevInertia*2 <= inertia <= medianInertia+scStdDevInertia*2) &&
+      //  (medianConvexity-scstDevConvexity*2 <= convexity <= medianConvexity+scstDevConvexity*2)
+    ){
 
       total_dots.push(area)
 

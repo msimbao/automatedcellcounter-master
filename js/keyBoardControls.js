@@ -11,6 +11,13 @@ document.addEventListener('keyup', (event) => {
     var totalText = document.getElementById ( "totalManual" )
     var boxesText = document.getElementById ( "boxesManual" )
     var viabilityText = document.getElementById ( "viabilityManual" )
+
+    var medianCircularity = document.getElementById ( "medianCircularity" )
+    var stdevCircularity = document.getElementById ( "stdevCircularity" )
+    var medianInertia = document.getElementById ( "medianInertia" )
+    var stdevInertia = document.getElementById ( "stdevInertia" )
+    var medianConvexity = document.getElementById ( "medianConvexity" )
+    var stdevConvexity = document.getElementById ( "stdevConvexity" )
     
     var live = liveText.innerText
     var budding = buddingText.innerText
@@ -32,15 +39,23 @@ document.addEventListener('keyup', (event) => {
       deadText.innerText = dead
     }
     if (name == 'r'){
-      liveText.innerText = 0
-      buddingText.innerText = 0
-      deadText.innerText = 0
+      resetCounts()
     }
 
     if (name === 'Enter' ){
       estimateCounts()
       boxes++
       boxesText.innerText = boxes
+    }
+
+    if (name === 'b' ){
+      blobData = getBlobData()
+      medianCircularity.innerText = blobData[0]
+      stdevCircularity.innerText = blobData[1]
+      medianInertia.innerText = blobData[2]
+      stdevInertia.innerText = blobData[3]
+      medianConvexity.innerText = blobData[4]
+      stdevConvexity.innerText = blobData[5]
     }
 
     var total = parseInt(live) + parseInt(dead)

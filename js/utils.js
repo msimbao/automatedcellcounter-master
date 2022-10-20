@@ -1,6 +1,8 @@
 const PI = 3.14159265358979323846
 
-
+/**
+ * 
+ */
 // Javascript To Start Webcam
         navigator.mediaDevices.getUserMedia({
           video: {
@@ -17,6 +19,11 @@ const PI = 3.14159265358979323846
       // deal with an error (such as no webcam)
       });
 
+/**
+ * 
+ * @param {*} values 
+ * @returns 
+ */
 function myMedian(values){
   if(values.length ===0) throw new Error("No inputs");
 
@@ -39,8 +46,15 @@ function myStandardDeviation (array) {
 }
 
 
-
+/**
+ * 
+ * @param {*} video 
+ * @param {*} canvas 
+ * @param {*} context 
+ * @param {*} frameRate 
+ */
 function draw(video, canvas, context, frameRate) {
+
   context.scale(-1, -1);
     context.drawImage(video, 0, 0, canvas.width *-1, canvas.height*-1);
   
@@ -54,8 +68,6 @@ function draw(video, canvas, context, frameRate) {
     context.beginPath();
     context.rect(xPos, yPos, boxLength, boxLength);
     context.stroke();
-    
-
   
     var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
     // var filtered = ImageFilters.Sharpen (imageData, factor)
@@ -65,7 +77,11 @@ function draw(video, canvas, context, frameRate) {
     setTimeout(draw, 1/frameRate, video, canvas, context, frameRate);
   }
 
-
+/**
+ * 
+ * @param {*} contour 
+ * @returns 
+ */
   function myInertia(contour){
 
     moms = cv.moments(contour);
@@ -100,6 +116,11 @@ function draw(video, canvas, context, frameRate) {
     return ratio 
   }
 
+/**
+ * 
+ * @param {*} contour 
+ * @returns 
+ */
   function myConvexity (contour) {
     area = cv.contourArea(contour, false);
     const hull = new cv.Mat();
