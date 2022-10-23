@@ -19,31 +19,7 @@ const PI = 3.14159265358979323846
       // deal with an error (such as no webcam)
       });
 
-/**
- * 
- * @param {*} values 
- * @returns 
- */
-function myMedian(values){
-  if(values.length ===0) throw new Error("No inputs");
 
-  values.sort(function(a,b){
-    return a-b;
-  });
-
-  var half = Math.floor(values.length / 2);
-  
-  if (values.length % 2)
-    return values[half];
-  
-  return (values[half - 1] + values[half]) / 2.0;
-}
-
-function myStandardDeviation (array) {
-  const n = array.length
-  const mean = array.reduce((a, b) => a + b) / n
-  return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
-}
 
 
 /**
@@ -62,6 +38,7 @@ function draw(video, canvas, context, frameRate) {
     var xPos = canvas.width/2 - boxLength/2
     var yPos = canvas.height/2 - boxLength/2
   
+
     context.lineWidth = 5;
     context.setLineDash([20, 20]);
     context.strokeStyle = "#0000ff";
@@ -76,6 +53,21 @@ function draw(video, canvas, context, frameRate) {
   
     setTimeout(draw, 1/frameRate, video, canvas, context, frameRate);
   }
+
+  var copyBtn = document.querySelector('#copy_btn');
+  copyBtn.addEventListener('click', function () {
+  var urlField = document.querySelector('tr');
+   
+  // create a Range object
+  var range = document.createRange();  
+  // set the Node to select the "range"
+  range.selectNode(urlField);
+  // add the Range to the set of window selections
+  window.getSelection().addRange(range);
+   
+  // execute 'copy', can't 'cut' in this case
+  document.execCommand('copy');
+}, false);
 
 /**
  * 
@@ -131,3 +123,29 @@ function draw(video, canvas, context, frameRate) {
     return ratio
   }
   
+  /**
+ * 
+ * @param {*} values 
+ * @returns 
+ */
+function myMedian(values){
+  if(values.length ===0) throw new Error("No inputs");
+
+  values.sort(function(a,b){
+    return a-b;
+  });
+
+  var half = Math.floor(values.length / 2);
+  
+  if (values.length % 2)
+    return values[half];
+  
+  return (values[half - 1] + values[half]) / 2.0;
+}
+
+function myStandardDeviation (array) {
+  const n = array.length
+  const mean = array.reduce((a, b) => a + b) / n
+  return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
+}
+

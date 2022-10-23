@@ -26,6 +26,9 @@ let inertias = []
 let convexities = []
 let circularities = []
 
+let clusterCoordinates = []
+let acceptedCircularities = []
+
 let live_dots=[]
 let budding_dots=[]
 let dead_dots=[]
@@ -125,7 +128,7 @@ for (let i = 0; i < second_contours.size(); ++i) {
     inertias.push(inertia)
     convexities.push(convexity)
 
-    var coordinate = [circularity,inertia]
+    var coordinate = [circularity,inertia,convexity]
     clusterCoordinates.push(coordinate)
     
 }
@@ -160,7 +163,19 @@ stDevInertia = myStandardDeviation(inertias)
 medianConvexity = myMedian(convexities)
 stDevConvexity = myStandardDeviation(convexities)  
 
-blobKmeans = KMeansCluster(clusterCoordinates,2)
+blobKmeans = ss.kMeansCluster(clusterCoordinates,2)
+
+// console.log(blobKmeans)
+
+// for (var i = 0; i < clusterCoordinates.length; i++) {
+//   kmeansResult = blobKmeans.labels[i]
+//   // console.log(kmeansResult)
+//   if(kmeansResult == 1)
+//   acceptedCircularities.push(circularities[i])
+// }
+
+// console.log(acceptedCircularities)
+
 
 for (let i = 0; i < second_contours.size(); ++i) {
     let cnt = second_contours.get(i)
@@ -203,10 +218,12 @@ for (let i = 0; i < second_contours.size(); ++i) {
       // (circularityError *24 >= stDevCircularity) && 
       // (convexity > 0.3) && 
       // (area > 0) && 
-      // (areaError *24 >= stDevArea) && 
-      // (poly.rows > 8) 
+      // (areaError *3 >= stDevArea) && 
+      (poly.rows > 8) &&
 
-      (circularityClusters[1].includes(circularity)) 
+      // (acceptedCircularities.includes(circularity))
+      
+      (circularityClusters[1].includes(circularity))
        
       //  (medianCircularity-scStdDevCircularity*2 <= circularity <= medianCircularity+scStdDevCircularity*2) &&
       //  (medianInertia-scStdDevInertia*2 <= inertia <= medianInertia+scStdDevInertia*2) &&

@@ -71,16 +71,20 @@
           <th>Total Cells</th>
           <th>Viability</th>
         </tr>
-        <tr>
+        <tr id="manualValues">
           <td id="boxesManual">0</td>
           <td id="liveManual">0</td>
           <td id="buddingManual">0</td>
           <td id="deadManual">0</td>
           <td id="totalManual">0</td>
           <td id="viabilityManual">0</td>
-          <td> <button class="countButton" onclick='resetManual()'>Reset</button> </td>
         </tr>
       </table>
+
+      <p> 
+        <button class="countButton" id="copy_manual" onclick="copyManual()">Copy</button>
+        <button class="countButton" onclick='resetManual()'>Reset</button>
+      </p>
 
       <!-- <button class="countButton" onclick="estimateCounts()">
         Count
@@ -97,16 +101,20 @@
           <th>Total Cells</th>
           <th>Viability</th>
         </tr>
-        <tr>
+        <tr id="autoValues">
           <td id="boxesAuto">0</td>
           <td id="liveAuto">0</td>
           <td id="buddingAuto">0</td>
           <td id="deadAuto">0</td>
           <td id="totalAuto">0</td>
           <td id="viabilityAuto">0</td>
-          <td> <button class="countButton" onclick='resetAuto()'>Reset</button> </td>
         </tr>
       </table>
+
+      <p> 
+        <button class="countButton" id="copy_auto">Copy</button>
+        <button class="countButton" onclick='resetAuto()'>Reset</button>
+      </p>
 
       <table>
         <tr>
@@ -114,12 +122,16 @@
           <th>Viability Accuracy</th>
           <th>Budding Accuracy</th>
         </tr>
-        <tr>
+        <tr id="resultsValues">
           <td id="totalAccuracy">0</td>
           <td id="viabilityAccuracy">0</td>
           <td id="buddingAccuracy">0</td>
         </tr>
       </table>
+
+      <p>        
+        <button class="countButton" id="copy_results">Copy</button>
+      </p>
 
 
 
