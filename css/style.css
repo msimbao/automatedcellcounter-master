@@ -6,6 +6,7 @@ body {
   width: 100%;
   text-align: center;
   font-family: "Red Hat Display";
+  background:#F4F5F8;
   /* font-variant: small-caps; */
 }
 
@@ -74,14 +75,14 @@ ul {
   width: 50px;
   padding: 5px 10px 5px 10px;
   margin: 10px;
-  border-radius: 50px;
+  border-radius: 5px;
   font-size: 10pt !important;
   text-align: center;
   color: #fff;
   display: inline-block;
   cursor: pointer;
   position: relative;
-  background: var(--primary-bg-color) !important;
+  background: var(--primary-bg-color);
   border: 2px solid transparent;
   box-shadow: 0px 2px 4px var(--bg-lighter);
   line-height: initial !important;
@@ -93,9 +94,16 @@ ul {
   text-shadow: none;
   transition: all 0.2s;
   font-family: inherit;
+  transition:0.3s;
+}
+
+.countButton:hover{
+  background:#8bb7fc;
+  box-shadow: 0px 1px 2px var(--bg-lighter);
 }
 
 #container {
+  background:white;
   width: 80%;
   margin: auto;
 }
@@ -178,7 +186,6 @@ option:active {
 
 canvas {
   position: relative;
-  margin-left: 100px;
   margin: auto;
   border-radius: 10px;
 }
@@ -191,19 +198,39 @@ canvas {
 #map{
   position:absolute;
   top:50px;
-  right:100px;
+  right:50px;
   width:250px;
-  z-index:5;
+  z-index:2;
   border-radius:10px;
   border:2px solid black;
   opacity:1;
 }
 
+#instructions{
+  background-color:white;
+  position:absolute;
+  padding:5px;
+  top:50px;
+  left:50px;
+  width:250px;
+  z-index:2;
+  border-radius:10px;
+  border:2px solid black;
+  opacity:1;
+  font-size:12px;
+}
+
 /* Style the tab */
+
+#container{
+  border-radius:5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: none;
   background-color: #f1f1f1;
+  border-radius:5px 5px 0px 0px;
 }
 
 /* Style the buttons inside the tab */
@@ -213,9 +240,9 @@ canvas {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 24px 36px;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 24px;
 }
 
 /* Change background color of buttons on hover */
@@ -242,6 +269,28 @@ canvas {
   float: right;
   cursor: pointer;
   font-size: 28px;
+  border-radius:50%;
+  border:1px solid #262344;
+  width:35px;
+  height:35px;
+  transition:0.3s;
 }
 
-.topright:hover {color: red;}
+.topright:hover {
+  color: red;
+  border:1px solid red;
+  /* background:#8bb7fc; */
+}
+
+.modal{
+  border:none !important;
+  padding:20px !important;
+  width:80% !important;
+  text-align: center;
+  /* padding-left:0px !important; */
+}
+
+#boxesAuto{
+  border:2px solid #f16d54;
+  padding:3px;
+}

@@ -54,20 +54,16 @@ function draw(video, canvas, context, frameRate) {
     setTimeout(draw, 1/frameRate, video, canvas, context, frameRate);
   }
 
-  var copyBtn = document.querySelector('#copy_btn');
-  copyBtn.addEventListener('click', function () {
-  var urlField = document.querySelector('tr');
-   
-  // create a Range object
-  var range = document.createRange();  
-  // set the Node to select the "range"
-  range.selectNode(urlField);
-  // add the Range to the set of window selections
-  window.getSelection().addRange(range);
-   
-  // execute 'copy', can't 'cut' in this case
-  document.execCommand('copy');
-}, false);
+  $(".copy-btn").click(function() {
+    let tmpElement = $('<textarea style="opacity:0;"></textarea>');
+    let parent = $(this).closest('td').siblings().each(function(){
+      tmpElement.text(tmpElement.text() + $(this).text() + '\t');
+    });
+    
+    tmpElement.appendTo($(this)).focus().select();
+    document.execCommand("copy");
+    tmpElement.remove();
+  });
 
 /**
  * 

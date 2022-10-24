@@ -23,7 +23,6 @@ var liveManualText = document.getElementById ( "liveManual" )
 var buddingManualText = document.getElementById ( "buddingManual" )
 var deadManualText = document.getElementById ( "deadManual" )
 var totalManualText = document.getElementById ( "totalManual" )
-var boxesManualText = document.getElementById ("boxesManual")
 var viabilityManualText = document.getElementById ( "viabilityManual" )
 //================================================================
 
@@ -38,11 +37,31 @@ var totalAccuracyText = document.getElementById ( "totalAccuracy" )
 var viabilityAccuracyText = document.getElementById ( "viabilityAccuracy" )
 var buddingAccuracyText = document.getElementById ( "buddingAccuracy" )
 
+var map = document.getElementById("map");
+
+function previewCounts(){
+  countTotal(live,budding,dead,total)
+}
+
 function estimateCounts(){
   let predictions = countTotal(live,budding,dead,total)
 
+  if (boxes ==5){
+    resetCounts()
+    map.src = "images/map/"+1+".png"
+  }else{
+
+  
   boxes = boxes + 1
   boxesText.innerText = boxes
+
+  var currentBox = boxes + 1
+
+  if(boxes == 0){
+    map.src = "images/map/"+1+".png"
+  }else{
+      map.src = "images/map/"+currentBox + ".png"
+  }
 
   live = predictions[0]
   budding = predictions[1]
@@ -61,7 +80,7 @@ function estimateCounts(){
   deadText.innerText = dead
   totalText.innerText = total
 
-  console.log(live)
+  // console.log(live)
 
   viability = (100 * (live/total)).toFixed(2)
   viabilityText.innerText = viability
@@ -74,20 +93,21 @@ function estimateCounts(){
   buddingAccuracyText.innerText = buddingAccuracy
   viabilityAccuracyText.innerText = viabilityAccuracy
 }
+}
 
 function resetManual(){
   liveManual = 0
   buddingManual = 0
   deadManual = 0
   totalManual = 0
-  boxesManual = 0
+  // boxesManual = 0
   viabilityManual = 0
 
   liveManualText.innerText = 0
   buddingManualText.innerText = 0
   deadManualText.innerText = 0
   totalManualText.innerText = 0
-  boxesManualText.innerText = 0
+  // boxesManualText.innerText = 0
   viabilityManualText.innerText = 0
 
 }

@@ -16,17 +16,3 @@ video.addEventListener('play', function() {
   draw(video,canvas,context,60)
 }, false);
 
-    // var img = new Image();
-    // img.src = 'https://cdn.glitch.global/5fbfde84-4f5e-46c9-b02b-7de045bf80b7/6.PNG?v=1662690142863';
-    // img.crossOrigin = "Anonymous";
-
-// context.drawImage(img,0,0, canvas.width, canvas.height);
-
-
-// var Module = {
-//   // https://emscripten.org/docs/api_reference/module.html#Module.onRuntimeInitialized
-//   onRuntimeInitialized() {
-//     document.getElementById('status').innerHTML = 'OpenCV.js is ready.';
-//   }
-// };
-

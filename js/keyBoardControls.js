@@ -9,7 +9,6 @@ document.addEventListener('keyup', (event) => {
     var buddingText = document.getElementById ( "buddingManual" )
     var deadText = document.getElementById ( "deadManual" )
     var totalText = document.getElementById ( "totalManual" )
-    var boxesText = document.getElementById ( "boxesManual" )
     var viabilityText = document.getElementById ( "viabilityManual" )
 
     var medianCircularity = document.getElementById ( "medianCircularity" )
@@ -22,7 +21,6 @@ document.addEventListener('keyup', (event) => {
     var live = liveText.innerText
     var budding = buddingText.innerText
     var dead =  deadText.innerText
-    var boxes = boxesText.innerText
     // alert(live)
     // Alert the key name and key code on keydown
     // alert(`Key pressed ${name} \r\n Key code value: ${code}`);
@@ -44,8 +42,6 @@ document.addEventListener('keyup', (event) => {
 
     if (name === 'Enter' ){
       estimateCounts()
-      boxes++
-      boxesText.innerText = boxes
     }
 
     if (name === 'b' ){
