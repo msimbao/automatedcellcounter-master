@@ -2,7 +2,7 @@
 
 Automated Cell Counter to count cells in yeast corn mash and clear cultures at biorefineries. Project was designed to be used at a cell counting station and could pickout yeast cells from corn debris in sample microscope images.
 
-[Cell Counter Station](https://github.com/msimbao/icycellcounter/blob/master/images/cellcounterstation.jpg)
+![Cell Counter Station](https://github.com/msimbao/icycellcounter/blob/master/images/cellcounterstation.jpg)
 
 ## Description
 
