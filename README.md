@@ -4,6 +4,10 @@ Automated Cell Counter to count cells in yeast corn mash and clear cultures at b
 
 ![Cell Counter Station](https://github.com/msimbao/icycellcounter/blob/master/images/cellcounterstation.jpg)
 
+![Test Input](https://github.com/msimbao/icycellcounter/blob/master/images/test.png)
+
+![Test Output](https://github.com/msimbao/icycellcounter/blob/master/images/testoutput.png)
+
 ## Description
 
 The ICY Cell counter was a program made for the Green Plains Innovation Center at York to allow the lab to perform cell counts quickly using a digital microscope camera instead of manually which takes a lot of time. The automated system could count cells up to 2x faster and had a precision close to 95% in non-zero hour fermentation cultures which was an improvement on the current best cell counter in industry (Cellometer) that only has around an 85% precision for yeast corn mash samples since it fails to accurately select between corn mash and yeast cells.
