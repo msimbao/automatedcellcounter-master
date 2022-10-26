@@ -20,7 +20,28 @@ const PI = 3.14159265358979323846
       });
 
 
+function capture(){
+let canvas = document.createElement('canvas');
+let video = document.getElementById('my-video');
 
+// canvas.width = 1920;
+// canvas.height = 1080;
+
+canvas.width  = 800;
+canvas.height = 640;
+
+let ctx = canvas.getContext('2d');
+ctx.drawImage( video, 0, 0, canvas.width, canvas.height );
+
+// canvas.toDataURL('image/jpeg');
+
+var link = document.createElement("a");
+link.href = canvas.toDataURL();
+link.download = "Image.png";
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+}
 
 /**
  * 
