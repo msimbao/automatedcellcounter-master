@@ -33,7 +33,7 @@ The system uses an inhouse algorithm designed for segmentation via color and mor
 
 ## Algorithm Summary 
 
-
+![Algorithm Summary](https://github.com/msimbao/icycellcounter/blob/master/images/Cell%20Counting%20Algorithm%20Summary.jpg)
 
 ## To Use
 
