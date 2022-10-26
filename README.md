@@ -4,9 +4,9 @@ Automated Cell Counter to count cells in yeast corn mash and clear cultures at b
 
 ![Cell Counter Station](https://github.com/msimbao/icycellcounter/blob/master/images/cellcounterstation.jpg)
 
-![Test Input](https://github.com/msimbao/icycellcounter/blob/master/images/test.png)
+![Test Input](https://github.com/msimbao/icycellcounter/blob/master/images/final.pngg)
 
-![Test Output](https://github.com/msimbao/icycellcounter/blob/master/images/testoutput.png)
+![Test Output](https://github.com/msimbao/icycellcounter/blob/master/images/final%20with%20live%20dead.png)
 
 ## Description
 
