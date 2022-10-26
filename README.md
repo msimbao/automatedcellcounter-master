@@ -27,13 +27,6 @@ The project needs a usb microscope camera to run like the HDCE-X5 camera otherwi
 * Image Capture
 * Data Collection to determine morphology of cellular objects in camera feed
 
-* 0.2
-    * Optimized kmeans for morphology and color
-    * Added capture function
-    * Improved UI
-* 0.1
-    * Initial Release
-
 ## License
 
 This project is licensed under the MIT License
