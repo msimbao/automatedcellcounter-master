@@ -52,6 +52,6 @@ The project needs a usb microscope camera to run like the HDCE-X5 camera otherwi
 
 This project is licensed under the MIT License
 
-##Acknolwedgments
+## Acknolwedgments
 
 * Peter Drake - Supervisor
