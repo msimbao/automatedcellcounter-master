@@ -20,7 +20,7 @@ The system uses an inhouse algorithm designed for segmentation via color and mor
 
 ## Accuracy Testing
 
-| Total Accuracy | Viability | Accuracy |
+| | Total Accuracy | Viability Accuracy |
 | --- | --- | --- |
 | | 92.23	| 96.15 |
 | | 94.16 |	94.01 |
